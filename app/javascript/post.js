@@ -7,7 +7,15 @@ function post (){
     XHR.responseType = "json";                           //レスポンスにJSONを指定
     XHR.send(formData);                                  //Ajaxで送信
     XHR.onload = () => {                                 //onloadプロパティとは、リクエストの送信が成功したときに呼び出されるプロパティ
-      console.log(XHR.response.article);                 //articleはレスポンスに含まれるデータのうち、コントローラー側で指定したjson形式のデータ
+      const item = XHR.response.article;                 //articleはレスポンスに含まれるデータのうち、コントローラー側で指定したjson形式のデータ
+      const contentsArea = document.getElementById("contents_area")   //今回投稿したデータを追加する要素を取得。今回追加する要素の親要素にあたる
+      const articleText = document.getElementById("article_text")     //フォーム投稿の際にテキストを入力したテキストエリアを取得
+      const html = `
+        <div class="article">
+          ${item.text}                                     
+        </div>`;
+      contentsArea.insertAdjacentHTML("afterbegin", html);  //親要素に直前で定義した要素を追加。afterbeginは親要素内の最上部に追加することを意味している。
+      articleText.value = "";                            //フォームの入力欄を空にする。
     };
     e.preventDefault();                                  //preventDefaultでデフォルトの送信を無効化する
   });
