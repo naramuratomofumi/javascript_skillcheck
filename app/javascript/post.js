@@ -6,6 +6,9 @@ function post (){
     XHR.open("POST", "/articles", true);                 //Ajaxに関する情報を初期化し、URIを設定
     XHR.responseType = "json";                           //レスポンスにJSONを指定
     XHR.send(formData);                                  //Ajaxで送信
+    XHR.onload = () => {                                 //onloadプロパティとは、リクエストの送信が成功したときに呼び出されるプロパティ
+      console.log(XHR.response.article);                 //articleはレスポンスに含まれるデータのうち、コントローラー側で指定したjson形式のデータ
+    };
     e.preventDefault();                                  //preventDefaultでデフォルトの送信を無効化する
   });
 };
