@@ -7,6 +7,10 @@ function post (){
     XHR.responseType = "json";                           //レスポンスにJSONを指定
     XHR.send(formData);                                  //Ajaxで送信
     XHR.onload = () => {                                 //onloadプロパティとは、リクエストの送信が成功したときに呼び出されるプロパティ
+      if (XHR.status != 200){
+        alert(`Error ${XHR.status}: ${XHR.statusText}`);
+        return null;
+      };
       const item = XHR.response.article;                 //articleはレスポンスに含まれるデータのうち、コントローラー側で指定したjson形式のデータ
       const contentsArea = document.getElementById("contents_area")   //今回投稿したデータを追加する要素を取得。今回追加する要素の親要素にあたる
       const articleText = document.getElementById("article_text")     //フォーム投稿の際にテキストを入力したテキストエリアを取得
