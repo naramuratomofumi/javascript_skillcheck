@@ -20,6 +20,9 @@ function post (){
         </div>`;
       contentsArea.insertAdjacentHTML("afterbegin", html);  //親要素に直前で定義した要素を追加。afterbeginは親要素内の最上部に追加することを意味している。
       articleText.value = "";                            //フォームの入力欄を空にする。
+
+      const charNum = document.getElementById("char_num"); //投稿後に文字カウントを0文字と表記するための処理
+      charNum.innerHTML = "0文字";
     };
     e.preventDefault();                                  //preventDefaultでデフォルトの送信を無効化する
   });
